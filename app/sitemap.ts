@@ -6,6 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     "",
     "/services",
+    "/eligibility",
     "/student-visa",
     "/work-visa",
     "/professional-visa",

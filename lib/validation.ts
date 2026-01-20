@@ -3,7 +3,9 @@ import { z } from "zod";
 export const leadSchema = z.object({
   name: z.string().min(1),
   email: z.string().email(),
+  phone: z.string().min(1),
   visaType: z.string().min(1),
+  destination: z.string().min(1),
   message: z.string().min(1)
 });
 

@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
 import { VisaWizard } from "@/components/VisaWizard";
 import { Button } from "@/components/ui/Button";
+import { VerificationSection } from "@/components/VerificationSection";
+import { CallAgenda } from "@/components/CallAgenda";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -53,6 +55,8 @@ export default function ServicesPage() {
           ))}
         </div>
       </section>
+      <VerificationSection />
+      <CallAgenda />
       <section className="section-padding pb-20" id="eligibility">
         <div className="glass rounded-2xl p-6">
           <h3 className="text-xl font-semibold text-ink">VisaWay service comparison</h3>

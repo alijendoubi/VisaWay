@@ -5,7 +5,7 @@ import { sendTemplateEmail } from "@/lib/email";
 
 const buildEmailPayload = (name: string) => ({
   firstName: name.split(" ")[0] || name,
-  supportEmail: "hello@visaway.com"
+  supportEmail: "contact@visaway.live"
 });
 
 export async function POST(request: Request) {
@@ -18,7 +18,9 @@ export async function POST(request: Request) {
       .insert({
         name: data.name,
         email: data.email,
+        phone: data.phone,
         visa_type: data.visaType,
+        destination: data.destination,
         message: data.message,
         status: "new"
       })

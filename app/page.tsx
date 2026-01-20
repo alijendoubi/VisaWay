@@ -7,6 +7,14 @@ import { PartnersStrip } from "@/components/PartnersStrip";
 import { FAQ } from "@/components/FAQ";
 import { CTABand } from "@/components/CTABand";
 import { VisaWizard } from "@/components/VisaWizard";
+import { VerificationSection } from "@/components/VerificationSection";
+import { CallAgenda } from "@/components/CallAgenda";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Home",
+  description: "VisaWay is a premium yet accessible visa assistance agency for students and professionals."
+};
 
 export default function HomePage() {
   return (
@@ -15,7 +23,9 @@ export default function HomePage() {
       <VisaWizard />
       <HowItWorks />
       <ServiceCards />
+      <VerificationSection />
       <WhyVisaWay />
+      <CallAgenda />
       <Testimonials />
       <PartnersStrip />
       <FAQ />

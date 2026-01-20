@@ -31,15 +31,27 @@ export const Hero = () => {
                       Book a Free Consultation
                       <ArrowUpRight className="h-4 w-4" />
                     </Button>
-                    <Button variant="secondary" href="/services" size="lg" ariaLabel="Check eligibility">
+                    <Button variant="secondary" href="/eligibility" size="lg" ariaLabel="Check eligibility">
                       Check Eligibility
                     </Button>
                   </div>
                   <div className="flex flex-wrap gap-4 text-sm text-white/80">
-                    {["96% approval-ready files", "24h response time", "300+ global partners"].map((item) => (
-                      <span key={item} className="inline-flex items-center gap-2">
+                    {[
+                      {
+                        label: "Approval-ready preparation",
+                        tooltip: "Based on internal file readiness checks, not a guarantee."
+                      },
+                      { label: "24h response time", tooltip: "Average response for new inquiries." },
+                      { label: "300+ global partners", tooltip: "Universities, employers, and training centers." }
+                    ].map((item) => (
+                      <span
+                        key={item.label}
+                        className="inline-flex items-center gap-2"
+                        title={item.tooltip}
+                        aria-label={item.tooltip}
+                      >
                         <CheckCircle className="h-4 w-4 text-white" />
-                        {item}
+                        {item.label}
                       </span>
                     ))}
                   </div>

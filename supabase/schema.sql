@@ -4,7 +4,9 @@ create table if not exists leads (
   id uuid primary key default uuid_generate_v4(),
   name text not null,
   email text not null,
+  phone text,
   visa_type text not null,
+  destination text,
   message text not null,
   status text default 'new',
   created_at timestamptz default now()
