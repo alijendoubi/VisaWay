@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0B1B46" />
+      <stop offset="1" stop-color="#0D2A7A" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#2F6BFF" />
+      <stop offset="1" stop-color="#19C6C1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <circle cx="980" cy="120" r="140" fill="rgba(47, 107, 255, 0.25)" />
+  <circle cx="240" cy="520" r="180" fill="rgba(25, 198, 193, 0.2)" />
+  <rect x="120" y="150" width="960" height="330" rx="36" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.2)" />
+  <text x="180" y="300" fill="#F5F7FB" font-size="64" font-family="Arial, sans-serif" font-weight="700">VisaWay</text>
+  <text x="180" y="365" fill="#DDE6FF" font-size="28" font-family="Arial, sans-serif">Premium visa assistance for global journeys</text>
+  <rect x="180" y="400" width="220" height="46" rx="23" fill="url(#accent)" />
+  <text x="200" y="432" fill="#0B1B46" font-size="18" font-family="Arial, sans-serif" font-weight="600">Book a Consultation</text>
+</svg>
