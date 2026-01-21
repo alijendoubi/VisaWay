@@ -1,7 +1,6 @@
 import { Metadata } from "next";
-import { PageHeader } from "@/components/PageHeader";
+import Image from "next/image";
 import { ContactForm } from "@/components/ContactForm";
-import { MessageCircle } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -17,11 +16,27 @@ const faqs = [
 export default function ContactPage() {
   return (
     <div>
-      <PageHeader
-        eyebrow="Contact"
-        title="Let’s plan your visa journey"
-        description="Send us your details and an advisor will get back within 24 hours."
-      />
+      <section className="section-padding py-12">
+        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div className="space-y-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky">Contact</p>
+            <h1 className="text-4xl font-semibold text-ink md:text-5xl">Let’s plan your visa journey.</h1>
+            <p className="text-sm text-ink/70">
+              Share your details and we’ll respond within 24 hours. No spam, no commitment.
+            </p>
+          </div>
+          <div className="rounded-3xl bg-white p-4 shadow-soft">
+            <Image
+              src="/images/destinations/spain.jpg"
+              alt="Contact VisaWay"
+              width={640}
+              height={480}
+              className="h-64 w-full rounded-2xl object-cover"
+            />
+          </div>
+        </div>
+      </section>
+
       <section className="section-padding pb-20">
         <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr]">
           <ContactForm />
@@ -48,16 +63,6 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-      <a
-        href="https://wa.me/393514784570"
-        className="fixed bottom-6 right-6 inline-flex items-center gap-2 rounded-full bg-cta-gradient px-5 py-3 text-sm font-semibold text-white shadow-soft"
-        aria-label="Chat with VisaWay on WhatsApp"
-        target="_blank"
-        rel="noreferrer"
-      >
-        <MessageCircle className="h-4 w-4" />
-        WhatsApp
-      </a>
     </div>
   );
 }

@@ -39,7 +39,10 @@ export const EligibilityFlow = () => {
   }, []);
 
   useEffect(() => {
-    const visaType = searchParams.get("visaType") || "";
+    const rawVisaType = searchParams.get("visaType") || "";
+    const visaType = rawVisaType
+      ? rawVisaType.charAt(0).toUpperCase() + rawVisaType.slice(1).toLowerCase()
+      : "";
     const destination = searchParams.get("destination") || "";
     const timeframe = searchParams.get("timeframe") || "";
     setFormData((prev) => ({

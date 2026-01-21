@@ -7,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { CookieBanner } from "@/components/CookieBanner";
 import { ConsultationModal } from "@/components/ConsultationModal";
 import { ModalProvider } from "@/components/ModalContext";
+import { StickyActions } from "@/components/StickyActions";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -52,6 +53,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <Header />
           <main id="main">{children}</main>
           <Footer />
+          <StickyActions />
           <ConsultationModal />
           <CookieBanner />
         </ModalProvider>

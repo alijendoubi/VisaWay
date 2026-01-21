@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/Button";
 import { cn } from "@/components/ui/cn";
 
 const navLinks = [
+  { href: "/eligibility", label: "Eligibility" },
   { href: "/services", label: "Services" },
   { href: "/student-visa", label: "Student Visa" },
   { href: "/work-visa", label: "Work Visa" },
