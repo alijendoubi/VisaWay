@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import { track } from "@/lib/analytics";
 import { addSubmission } from "@/lib/eligibilityStore";
@@ -16,17 +15,27 @@ const budgets = ["Under 3,000", "3,000-6,000", "6,000-10,000", "10,000+"];
 
 const steps = ["Visa", "Destination", "Timeframe", "Profile", "Results"];
 
-export const EligibilityFlow = () => {
+const normalizeVisaType = (value: string) =>
+  value ? value.charAt(0).toUpperCase() + value.slice(1).toLowerCase() : "";
+
+export const EligibilityFlow = ({
+  initialVisaType = "",
+  initialDestination = "",
+  initialTimeframe = ""
+}: {
+  initialVisaType?: string;
+  initialDestination?: string;
+  initialTimeframe?: string;
+}) => {
   const { open } = useModal();
-  const searchParams = useSearchParams();
   const [currentStep, setCurrentStep] = useState(0);
   const [error, setError] = useState("");
   const [showChecklistOptions, setShowChecklistOptions] = useState(false);
 
   const [formData, setFormData] = useState({
-    visaType: "",
-    destination: "",
-    timeframe: "",
+    visaType: normalizeVisaType(initialVisaType),
+    destination: initialDestination,
+    timeframe: initialTimeframe,
     nationality: "",
     ageRange: "",
     language: "",
@@ -37,21 +46,6 @@ export const EligibilityFlow = () => {
   useEffect(() => {
     track("eligibility_started", { source: "eligibility" });
   }, []);
-
-  useEffect(() => {
-    const rawVisaType = searchParams.get("visaType") || "";
-    const visaType = rawVisaType
-      ? rawVisaType.charAt(0).toUpperCase() + rawVisaType.slice(1).toLowerCase()
-      : "";
-    const destination = searchParams.get("destination") || "";
-    const timeframe = searchParams.get("timeframe") || "";
-    setFormData((prev) => ({
-      ...prev,
-      visaType,
-      destination,
-      timeframe
-    }));
-  }, [searchParams]);
 
   const status = useMemo(() => {
     let score = 0;
@@ -238,7 +232,10 @@ export const EligibilityFlow = () => {
           <div className="mt-4">
             <p className="text-sm font-semibold text-ink">Do you have a sponsor?</p>
             <div className="mt-2 flex gap-3">
-              {["yes", "no"].map((value) => (
+              {[
+                "yes",
+                "no"
+              ].map((value) => (
                 <button
                   key={value}
                   onClick={() => setFormData((prev) => ({ ...prev, hasSponsor: value }))}

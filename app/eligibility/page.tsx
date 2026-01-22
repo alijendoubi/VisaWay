@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
 import { Suspense } from "react";
-import dynamicImport from "next/dynamic";
+import { EligibilityClient } from "@/components/EligibilityClient";
 
 export const metadata: Metadata = {
   title: "Eligibility",
@@ -9,13 +9,6 @@ export const metadata: Metadata = {
 };
 
 export const dynamic = "force-dynamic";
-
-const EligibilityFlow = dynamicImport(
-  () => import("@/components/EligibilityFlow").then((mod) => mod.EligibilityFlow),
-  {
-    ssr: false
-  }
-);
 
 export default function EligibilityPage() {
   return (
@@ -27,7 +20,7 @@ export default function EligibilityPage() {
       />
       <section className="section-padding pb-20">
         <Suspense fallback={<div className="rounded-2xl bg-white p-6 shadow-soft">Loading eligibility flow...</div>}>
-          <EligibilityFlow />
+          <EligibilityClient />
         </Suspense>
       </section>
     </div>
