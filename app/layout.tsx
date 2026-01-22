@@ -8,6 +8,7 @@ import { CookieBanner } from "@/components/CookieBanner";
 import { ConsultationModal } from "@/components/ConsultationModal";
 import { ModalProvider } from "@/components/ModalContext";
 import { StickyActions } from "@/components/StickyActions";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -56,6 +57,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <StickyActions />
           <ConsultationModal />
           <CookieBanner />
+          <Analytics />
         </ModalProvider>
       </body>
     </html>
