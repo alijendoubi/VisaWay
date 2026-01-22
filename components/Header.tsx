@@ -34,18 +34,18 @@ export const Header = () => {
             <Image src="/logo.png" alt="VisaWay logo" width={56} height={56} />
             <span className="text-lg font-semibold">VisaWay</span>
           </LocaleLink>
-          <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
+          <nav className="hidden flex-1 items-center justify-center gap-4 text-center md:gap-6 xl:gap-8 lg:flex" aria-label="Primary">
             {navLinks.map((link) => (
               <LocaleLink
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-ink/70 transition hover:text-ink"
+                className="text-sm font-medium text-ink/70 transition hover:text-ink text-center"
               >
                 {t(link.labelKey)}
               </LocaleLink>
             ))}
           </nav>
-          <div className="hidden items-center gap-3 lg:flex">
+          <div className="hidden items-center gap-2 lg:flex xl:gap-3">
             <div className="flex items-center gap-2 rounded-full border border-ink/10 px-3 py-1 text-xs font-semibold text-ink/60">
               <LocaleLink href="/en" className={locale === "en" ? "text-ink" : "text-ink/60"}>
                 EN
@@ -79,12 +79,12 @@ export const Header = () => {
           open ? "max-h-[420px] border-t border-white/60" : "max-h-0 overflow-hidden"
         )}
       >
-        <div className="section-padding flex flex-col gap-4 py-6">
+        <div className="section-padding flex flex-col gap-4 py-6 text-center">
           {navLinks.map((link) => (
             <LocaleLink
               key={link.href}
               href={link.href}
-              className="text-base font-medium text-ink/80"
+              className="text-base font-medium text-ink/80 text-center"
               onClick={() => setOpen(false)}
             >
               {t(link.labelKey)}
