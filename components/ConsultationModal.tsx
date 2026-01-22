@@ -119,6 +119,21 @@ export const ConsultationModal = () => {
                   />
                 </div>
                 <div className="grid gap-4 md:grid-cols-2">
+                  <input
+                    name="phone"
+                    className="w-full rounded-xl border border-ink/10 px-4 py-3 text-sm focus-visible:focus-ring"
+                    placeholder="Phone / WhatsApp"
+                    aria-label="Phone or WhatsApp"
+                  />
+                  <input
+                    name="destination"
+                    className="w-full rounded-xl border border-ink/10 px-4 py-3 text-sm focus-visible:focus-ring"
+                    placeholder="Destination"
+                    required
+                    aria-label="Destination"
+                  />
+                </div>
+                <div className="grid gap-4 md:grid-cols-2">
                   <select
                     name="visaType"
                     className="w-full rounded-xl border border-ink/10 px-4 py-3 text-sm focus-visible:focus-ring"
@@ -128,15 +143,18 @@ export const ConsultationModal = () => {
                     <option>Work Visa</option>
                     <option>Professional Visa</option>
                   </select>
-                  <input
-                    name="destination"
+                  <select
+                    name="timezone"
                     className="w-full rounded-xl border border-ink/10 px-4 py-3 text-sm focus-visible:focus-ring"
-                    placeholder="Destination"
-                    required
-                    aria-label="Destination"
-                  />
+                    aria-label="Timezone"
+                  >
+                    <option value="+01:00">GMT+1 (Tunis)</option>
+                    <option value="+00:00">GMT (London)</option>
+                    <option value="+02:00">GMT+2 (Paris)</option>
+                    <option value="-05:00">GMT-5 (New York)</option>
+                  </select>
                 </div>
-                <div className="grid gap-4 md:grid-cols-3">
+                <div className="grid gap-4 md:grid-cols-2">
                   <input
                     name="preferredDate"
                     type="date"
@@ -151,16 +169,6 @@ export const ConsultationModal = () => {
                     required
                     aria-label="Preferred time"
                   />
-                  <select
-                    name="timezone"
-                    className="w-full rounded-xl border border-ink/10 px-4 py-3 text-sm focus-visible:focus-ring"
-                    aria-label="Timezone"
-                  >
-                    <option value="+01:00">GMT+1 (Tunis)</option>
-                    <option value="+00:00">GMT (London)</option>
-                    <option value="+02:00">GMT+2 (Paris)</option>
-                    <option value="-05:00">GMT-5 (New York)</option>
-                  </select>
                 </div>
                 <textarea
                   name="notes"

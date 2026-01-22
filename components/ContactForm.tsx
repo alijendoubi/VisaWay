@@ -36,7 +36,16 @@ export const ContactForm = () => {
     const response = await fetch("/api/leads", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, phone, visaType, destination, message })
+      body: JSON.stringify({
+        name,
+        email,
+        phone,
+        visaType,
+        destination,
+        message,
+        locale: document.documentElement.lang || "en",
+        source: "contact_form"
+      })
     });
 
     setLoading(false);

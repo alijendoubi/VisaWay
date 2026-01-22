@@ -31,16 +31,39 @@ export async function POST() {
       supportEmail
     };
 
-    await sendTemplateEmail({
-      to: target.email,
-      template: event.type,
-      data: payload
-    });
+    try {
+      await sendTemplateEmail({
+        to: target.email,
+        template: event.type,
+        data: payload
+      });
 
-    await supabaseAdmin
-      .from("email_events")
-      .update({ status: "sent", sent_at: new Date().toISOString() })
-      .eq("id", event.id);
+      await supabaseAdmin.from("email_logs").insert({
+        email_event_id: event.id,
+        recipient: target.email,
+        template: event.type,
+        status: "sent"
+      });
+
+      await supabaseAdmin
+        .from("email_events")
+        .update({ status: "sent", sent_at: new Date().toISOString(), last_attempt_at: new Date().toISOString() })
+        .eq("id", event.id);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      await supabaseAdmin.from("email_logs").insert({
+        email_event_id: event.id,
+        recipient: target.email,
+        template: event.type,
+        status: "failed",
+        error: message
+      });
+
+      await supabaseAdmin
+        .from("email_events")
+        .update({ status: "failed", error: message, last_attempt_at: new Date().toISOString() })
+        .eq("id", event.id);
+    }
   }
 
   return NextResponse.json({ ok: true, processed: events?.length ?? 0 });

@@ -23,7 +23,9 @@ export async function POST(request: Request) {
         visa_type: data.visaType,
         destination: data.destination,
         message: data.message,
-        status: "new"
+        status: "new",
+        locale: data.locale,
+        source: data.source
       })
       .select()
       .single();
@@ -56,9 +58,15 @@ export async function POST(request: Request) {
       data: buildEmailPayload(data.name)
     });
 
+    await supabaseAdmin.from("email_logs").insert({
+      recipient: data.email,
+      template: "confirmation",
+      status: "sent"
+    });
+
     await supabaseAdmin
       .from("email_events")
-      .update({ sent_at: new Date().toISOString(), status: "sent" })
+      .update({ sent_at: new Date().toISOString(), status: "sent", last_attempt_at: new Date().toISOString() })
       .match({ lead_id: lead.id, type: "confirmation" });
 
     return NextResponse.json({ ok: true });

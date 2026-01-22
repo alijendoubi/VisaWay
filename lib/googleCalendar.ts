@@ -26,13 +26,15 @@ export const createCalendarEvent = async ({
   description,
   start,
   end,
-  attendeeEmail
+  attendeeEmail,
+  bookingId
 }: {
   summary: string;
   description: string;
   start: string;
   end: string;
   attendeeEmail: string;
+  bookingId: string;
 }) => {
   const { calendar, calendarId } = getCalendarClient();
   const response = await calendar.events.insert({
@@ -42,9 +44,20 @@ export const createCalendarEvent = async ({
       description,
       start: { dateTime: start },
       end: { dateTime: end },
-      attendees: [{ email: attendeeEmail }]
+      attendees: [{ email: attendeeEmail }],
+      extendedProperties: {
+        private: {
+          bookingId
+        }
+      }
     }
   });
 
+  return response.data;
+};
+
+export const getCalendarEvent = async (eventId: string) => {
+  const { calendar, calendarId } = getCalendarClient();
+  const response = await calendar.events.get({ calendarId, eventId });
   return response.data;
 };
