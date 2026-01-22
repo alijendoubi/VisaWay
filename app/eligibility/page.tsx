@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
 import { Suspense } from "react";
-import dynamic from "next/dynamic";
+import dynamicImport from "next/dynamic";
 
 export const metadata: Metadata = {
   title: "Eligibility",
@@ -10,9 +10,12 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
-const EligibilityFlow = dynamic(() => import("@/components/EligibilityFlow").then((mod) => mod.EligibilityFlow), {
-  ssr: false
-});
+const EligibilityFlow = dynamicImport(
+  () => import("@/components/EligibilityFlow").then((mod) => mod.EligibilityFlow),
+  {
+    ssr: false
+  }
+);
 
 export default function EligibilityPage() {
   return (
