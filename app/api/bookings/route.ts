@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { supabaseAdmin } from "@/lib/supabase";
+import { assertSupabase } from "@/lib/supabase";
 import { bookingSchema } from "@/lib/validation";
 import { sendTemplateEmail } from "@/lib/email";
 import { createCalendarEvent } from "@/lib/googleCalendar";
@@ -27,6 +27,7 @@ export async function POST(request: Request) {
       attendeeEmail: data.email
     });
 
+    const supabaseAdmin = assertSupabase();
     const { data: booking, error } = await supabaseAdmin
       .from("bookings")
       .insert({

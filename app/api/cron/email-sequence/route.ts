@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { supabaseAdmin } from "@/lib/supabase";
+import { assertSupabase } from "@/lib/supabase";
 import { sendTemplateEmail } from "@/lib/email";
 
 const supportEmail = "hello@visaway.com";
@@ -7,6 +7,7 @@ const supportEmail = "hello@visaway.com";
 export async function POST() {
   const now = new Date().toISOString();
 
+  const supabaseAdmin = assertSupabase();
   const { data: events, error } = await supabaseAdmin
     .from("email_events")
     .select("id,type,scheduled_at,lead_id,booking_id,leads(name,email),bookings(name,email,preferred_date,preferred_time)")

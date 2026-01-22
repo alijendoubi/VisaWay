@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
-import { supabaseAdmin } from "@/lib/supabase";
+import { assertSupabase } from "@/lib/supabase";
 
 export default async function AdminPage() {
   const session = await getServerSession(authOptions);
@@ -9,6 +9,7 @@ export default async function AdminPage() {
     redirect("/admin/login");
   }
 
+  const supabaseAdmin = assertSupabase();
   const { data: leads } = await supabaseAdmin
     .from("leads")
     .select("id,name,email,visa_type,status,created_at")

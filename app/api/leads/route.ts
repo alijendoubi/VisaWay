@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { supabaseAdmin } from "@/lib/supabase";
+import { assertSupabase } from "@/lib/supabase";
 import { leadSchema } from "@/lib/validation";
 import { sendTemplateEmail } from "@/lib/email";
 
@@ -13,6 +13,7 @@ export async function POST(request: Request) {
     const body = await request.json();
     const data = leadSchema.parse(body);
 
+    const supabaseAdmin = assertSupabase();
     const { data: lead, error } = await supabaseAdmin
       .from("leads")
       .insert({
