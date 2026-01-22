@@ -290,7 +290,7 @@ export const EligibilityFlow = ({
                 Email checklist
               </a>
               <a
-                href="https://wa.me/393514784570"
+                href="https://wa.me/393520337275"
                 className="rounded-full border border-ink/10 px-4 py-2 text-ink/70"
                 target="_blank"
                 rel="noreferrer"

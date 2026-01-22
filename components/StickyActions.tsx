@@ -7,7 +7,7 @@ export const StickyActions = () => {
   return (
     <>
       <a
-        href="https://wa.me/393514784570"
+        href="https://wa.me/393520337275"
         target="_blank"
         rel="noreferrer"
         className="fixed bottom-6 right-6 z-40 inline-flex items-center gap-2 rounded-full bg-cta-gradient px-4 py-3 text-sm font-semibold text-white shadow-soft"

@@ -8,21 +8,21 @@ const services = [
   {
     title: "Student Visa",
     description: "Education pathways with admission, funding, and embassy support.",
-    image: "/images/destinations/france.jpg",
+    image: "/images/services/student.png",
     bullets: ["University admission strategy", "Scholarship and funding guidance", "Visa file preparation"],
     href: "/student-visa"
   },
   {
     title: "Work Visa",
     description: "Career-focused documentation and employer coordination.",
-    image: "/images/destinations/germany.jpg",
+    image: "/images/services/work.png",
     bullets: ["Employer compliance support", "Contract and salary alignment", "Appointment scheduling"],
     href: "/work-visa"
   },
   {
     title: "Professional / Business",
     description: "Business travel support with a fast, embassy-ready pack.",
-    image: "/images/destinations/uae.jpg",
+    image: "/images/services/business.png",
     bullets: ["Invitation letter review", "Business itinerary planning", "Company documentation"],
     href: "/professional-visa"
   }
