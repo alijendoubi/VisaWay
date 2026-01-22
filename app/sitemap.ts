@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { blogPosts } from "@/content/posts";
+import { locales } from "@/lib/i18n";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://visaway.com";
@@ -16,15 +17,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/contact"
   ];
 
-  const staticEntries = staticRoutes.map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date()
-  }));
+  const staticEntries = locales.flatMap((locale) =>
+    staticRoutes.map((route) => ({
+      url: `${baseUrl}/${locale}${route}`,
+      lastModified: new Date()
+    }))
+  );
 
-  const blogEntries = blogPosts.map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.date)
-  }));
+  const blogEntries = locales.flatMap((locale) =>
+    blogPosts.map((post) => ({
+      url: `${baseUrl}/${locale}/blog/${post.slug}`,
+      lastModified: new Date(post.date)
+    }))
+  );
 
   return [...staticEntries, ...blogEntries];
 }

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { useModal } from "@/components/ModalContext";
+import { useTranslations } from "@/components/i18n/LocaleProvider";
 
 const destinations = [
   { name: "France", image: "/images/destinations/france.jpg" },
@@ -15,30 +16,30 @@ const destinations = [
 
 export const Hero = () => {
   const { open } = useModal();
+  const { t } = useTranslations();
 
   return (
     <section className="section-padding relative overflow-hidden bg-white pb-16 pt-12">
       <div className="relative grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-center">
         <div className="space-y-6">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-sky">
-            Visa clarity, worldwide
+            {t("hero.eyebrow")}
           </p>
           <h1 className="text-4xl font-semibold text-ink md:text-5xl lg:text-6xl">
-            Ready to study, work, or travel abroad — but the visa process feels confusing?
+            {t("hero.title")}
           </h1>
           <p className="text-base text-ink/70 md:text-lg">
-            VisaWay delivers A→Z support for Student, Work, and Professional visas with transparent steps, expert
-            review, and fast response times.
+            {t("hero.subtitle")}
           </p>
           <div className="flex flex-wrap gap-4">
             <Button href="/eligibility" ariaLabel="Check eligibility" size="lg">
-              Check Eligibility
+              {t("cta.checkEligibility")}
             </Button>
             <Button variant="secondary" onClick={open} ariaLabel="Book free consultation" size="lg">
-              Book Free Consultation
+              {t("cta.bookFree")}
             </Button>
           </div>
-          <p className="text-xs text-ink/60">No spam, no commitment · We respond within 24 hours.</p>
+          <p className="text-xs text-ink/60">{t("hero.noSpam")}</p>
         </div>
 
         <div className="relative">
@@ -70,13 +71,13 @@ export const Hero = () => {
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 5, repeat: Infinity }}
           >
-            <p className="text-xs font-semibold uppercase text-sky">Your roadmap</p>
-            <p className="mt-2 text-sm font-semibold text-ink">Step-by-step timeline</p>
+            <p className="text-xs font-semibold uppercase text-sky">{t("hero.roadmap")}</p>
+            <p className="mt-2 text-sm font-semibold text-ink">{t("hero.roadmapSubtitle")}</p>
             <ul className="mt-3 space-y-2 text-xs text-ink/70">
-              <li>1. Eligibility review</li>
-              <li>2. Document checklist</li>
-              <li>3. Appointment strategy</li>
-              <li>4. Submission + follow-up</li>
+              <li>{t("hero.timeline1")}</li>
+              <li>{t("hero.timeline2")}</li>
+              <li>{t("hero.timeline3")}</li>
+              <li>{t("hero.timeline4")}</li>
             </ul>
           </motion.div>
 
@@ -85,7 +86,7 @@ export const Hero = () => {
             animate={{ x: [0, 6, 0] }}
             transition={{ duration: 4, repeat: Infinity }}
           >
-            Typical processing ranges: 4–10 weeks
+            {t("hero.processing")}
           </motion.div>
         </div>
       </div>

@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
-import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { LocaleLink } from "@/components/i18n/LocaleLink";
+import { useTranslations } from "@/components/i18n/LocaleProvider";
 
 const footerLinks = [
   {
@@ -38,6 +41,7 @@ const socials = [
 ];
 
 export const Footer = () => {
+  const { t } = useTranslations();
   return (
     <footer className="border-t border-white/60 bg-white">
       <div className="section-padding grid gap-10 py-16 lg:grid-cols-[1.4fr_2fr_1.2fr]">
@@ -65,20 +69,24 @@ export const Footer = () => {
         <div className="grid gap-6 sm:grid-cols-3">
           {footerLinks.map((group) => (
             <div key={group.title} className="space-y-3">
-              <p className="text-sm font-semibold text-ink">{group.title}</p>
+              <p className="text-sm font-semibold text-ink">
+                {group.title === "Company" && t("footer.company")}
+                {group.title === "Visas" && t("footer.visas")}
+                {group.title === "Resources" && t("footer.resources")}
+              </p>
               <div className="space-y-2 text-sm text-ink/70">
                 {group.links.map((link) => (
-                  <Link key={link.href} href={link.href} className="block transition hover:text-ink">
+                  <LocaleLink key={link.href} href={link.href} className="block transition hover:text-ink">
                     {link.label}
-                  </Link>
+                  </LocaleLink>
                 ))}
               </div>
             </div>
           ))}
         </div>
         <div className="space-y-4">
-          <p className="text-sm font-semibold text-ink">Newsletter</p>
-          <p className="text-sm text-ink/70">Monthly visa updates and checklists.</p>
+          <p className="text-sm font-semibold text-ink">{t("footer.newsletter")}</p>
+          <p className="text-sm text-ink/70">{t("footer.newsletterCopy")}</p>
           <form className="flex flex-col gap-3">
             <input
               className="w-full rounded-xl border border-ink/10 px-4 py-3 text-sm focus-visible:focus-ring"
@@ -87,7 +95,7 @@ export const Footer = () => {
               aria-label="Email address"
             />
             <Button variant="secondary" type="submit" ariaLabel="Subscribe to newsletter">
-              Subscribe
+              {t("footer.subscribe")}
             </Button>
           </form>
         </div>

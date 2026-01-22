@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { Carousel } from "@/components/ui/Carousel";
+import { useTranslations } from "@/components/i18n/LocaleProvider";
 
 const supportItems = [
   {
@@ -51,6 +52,7 @@ const testimonials = [
 ];
 
 export const FullSupport = () => {
+  const { t } = useTranslations();
   return (
     <section className="section-padding py-16">
       <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center">
@@ -69,11 +71,9 @@ export const FullSupport = () => {
         </div>
         <div className="space-y-6">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky">Full Support</p>
-            <h2 className="mt-3 text-3xl font-semibold text-ink md:text-4xl">Full Support A→Z</h2>
-            <p className="mt-3 text-sm text-ink/70">
-              We protect your timeline and reduce risks by checking every document, every step of the way.
-            </p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky">{t("support.eyebrow")}</p>
+            <h2 className="mt-3 text-3xl font-semibold text-ink md:text-4xl">{t("support.title")}</h2>
+            <p className="mt-3 text-sm text-ink/70">{t("support.subtitle")}</p>
           </div>
           <div className="grid gap-4 md:grid-cols-2">
             {supportItems.map((item) => (
@@ -84,7 +84,7 @@ export const FullSupport = () => {
             ))}
           </div>
           <div className="rounded-2xl border border-ink/10 bg-white px-4 py-4 text-xs text-ink/60">
-            Our promise: transparent steps, privacy-first handling, and no false guarantees.
+            {t("support.promise")}
           </div>
         </div>
       </div>
@@ -107,15 +107,15 @@ export const FullSupport = () => {
       <div className="mt-10 rounded-3xl bg-cta-gradient px-8 py-10 text-white shadow-soft">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <h3 className="text-2xl font-semibold">Start with eligibility — it’s free.</h3>
-            <p className="mt-2 text-sm text-white/80">Get a roadmap and speak to an advisor within 24 hours.</p>
+            <h3 className="text-2xl font-semibold">{t("support.ctaTitle")}</h3>
+            <p className="mt-2 text-sm text-white/80">{t("support.ctaSubtitle")}</p>
           </div>
           <div className="flex flex-wrap gap-3">
             <Button href="/eligibility" ariaLabel="Check eligibility">
-              Check Eligibility
+              {t("cta.checkEligibility")}
             </Button>
             <Button variant="secondary" href="/contact" ariaLabel="Book consultation">
-              Book Free Consultation
+              {t("cta.bookFree")}
             </Button>
           </div>
         </div>

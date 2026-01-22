@@ -5,6 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { track } from "@/lib/analytics";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "@/components/i18n/LocaleProvider";
 
 const recommendations = {
   student: "Prepare admission requirements and scholarship shortlist.",
@@ -24,6 +25,7 @@ const timeframes = ["", "0-3 months", "3-6 months", "6-12 months"];
 
 export const VisaWizard = () => {
   const router = useRouter();
+  const { locale } = useTranslations();
   const [visaType, setVisaType] = useState("");
   const [destination, setDestination] = useState("");
   const [timeframe, setTimeframe] = useState("");
@@ -42,7 +44,7 @@ export const VisaWizard = () => {
     setError("");
     track("eligibility_started", { source: "wizard" });
     const params = new URLSearchParams({ visaType, destination, timeframe });
-    router.push(`/eligibility?${params.toString()}`);
+    router.push(`/${locale}/eligibility?${params.toString()}`);
   };
 
   return (

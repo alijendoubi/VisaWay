@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import Link from "next/link";
+import { LocaleLink } from "@/components/i18n/LocaleLink";
 import { cn } from "@/components/ui/cn";
 
 type ButtonVariant = "primary" | "secondary" | "ghost";
@@ -50,9 +50,9 @@ export const Button = ({
 
   if (href) {
     return (
-      <Link href={href} className={classes} aria-label={ariaLabel}>
+      <LocaleLink href={href} className={classes} ariaLabel={ariaLabel}>
         {children}
-      </Link>
+      </LocaleLink>
     );
   }
 

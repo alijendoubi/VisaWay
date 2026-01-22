@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Counter } from "@/components/ui/Counter";
 import { CheckCircle2 } from "lucide-react";
+import { useTranslations } from "@/components/i18n/LocaleProvider";
 
 const highlights = [
   "Fast, transparent timelines",
@@ -12,6 +13,7 @@ const highlights = [
 ];
 
 export const About = () => {
+  const { t } = useTranslations();
   return (
     <section className="section-padding py-16">
       <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center">
@@ -36,13 +38,12 @@ export const About = () => {
 
         <div className="space-y-6">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky">About VisaWay</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky">{t("about.eyebrow")}</p>
             <h2 className="mt-3 text-3xl font-semibold text-ink md:text-4xl">
-              Human guidance meets modern visa strategy.
+              {t("about.title")}
             </h2>
             <p className="mt-3 text-sm text-ink/70">
-              We are a visa assistance agency built for international ambition. Our advisors combine embassy-ready
-              workflows with real-time support to reduce stress and make each step clear.
+              {t("about.subtitle")}
             </p>
           </div>
 
@@ -51,19 +52,19 @@ export const About = () => {
               <p className="text-sm font-semibold text-ink">
                 <Counter value={4200} />+
               </p>
-              <p className="text-xs text-ink/60">Clients supported</p>
+              <p className="text-xs text-ink/60">{t("about.clients")}</p>
             </div>
             <div>
               <p className="text-sm font-semibold text-ink">
                 <Counter value={18} />+
               </p>
-              <p className="text-xs text-ink/60">Countries covered</p>
+              <p className="text-xs text-ink/60">{t("about.countries")}</p>
             </div>
             <div>
               <p className="text-sm font-semibold text-ink">
                 <Counter value={24} suffix="h" />
               </p>
-              <p className="text-xs text-ink/60">Avg response time</p>
+              <p className="text-xs text-ink/60">{t("about.response")}</p>
             </div>
           </div>
 

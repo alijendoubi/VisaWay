@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { Accordion, AccordionItem } from "@/components/ui/Accordion";
 import { Carousel } from "@/components/ui/Carousel";
+import { useTranslations } from "@/components/i18n/LocaleProvider";
 
 const tabs = ["Student", "Work", "Business"] as const;
 
@@ -123,17 +124,16 @@ const destinations = [
 export const Pathways = () => {
   const [activeTab, setActiveTab] = useState<TabType>("Student");
   const visaParam = activeTab === "Business" ? "Professional" : activeTab;
+  const { t } = useTranslations();
 
   const items = useMemo(() => pathwayData[activeTab], [activeTab]);
 
   return (
     <section className="section-padding py-16">
       <div className="space-y-4">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky">Visa Pathways</p>
-        <h2 className="text-3xl font-semibold text-ink md:text-4xl">Interactive pathways built for clarity</h2>
-        <p className="text-sm text-ink/70">
-          Explore each path, understand the steps, and see common pitfalls we help you avoid.
-        </p>
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky">{t("pathways.eyebrow")}</p>
+        <h2 className="text-3xl font-semibold text-ink md:text-4xl">{t("pathways.title")}</h2>
+        <p className="text-sm text-ink/70">{t("pathways.subtitle")}</p>
       </div>
 
       <div className="mt-8 flex flex-wrap gap-3">
@@ -145,7 +145,9 @@ export const Pathways = () => {
               activeTab === tab ? "border-ink bg-ink text-white" : "border-ink/10 bg-white text-ink/70"
             }`}
           >
-            {tab}
+            {tab === "Student" && t("pathways.tab.student")}
+            {tab === "Work" && t("pathways.tab.work")}
+            {tab === "Business" && t("pathways.tab.business")}
           </button>
         ))}
       </div>
@@ -153,10 +155,8 @@ export const Pathways = () => {
       <div className="mt-6 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
         <Accordion items={items} />
         <div className="rounded-3xl bg-white p-6 shadow-soft">
-          <p className="text-sm font-semibold text-ink">Timeline overview</p>
-          <p className="mt-2 text-sm text-ink/70">
-            Typical pathway for {activeTab.toLowerCase()} visas. We customize timelines based on embassy availability.
-          </p>
+          <p className="text-sm font-semibold text-ink">{t("pathways.timeline")}</p>
+          <p className="mt-2 text-sm text-ink/70">{t("pathways.timelineSubtitle")}</p>
           <div className="mt-4 space-y-3 text-sm text-ink/70">
             <div className="flex items-center justify-between rounded-xl bg-ink/5 px-4 py-3">
               <span>Eligibility</span>
@@ -179,7 +179,7 @@ export const Pathways = () => {
       </div>
 
       <div className="mt-10">
-        <Carousel title="Destination picker">
+        <Carousel title={t("pathways.destinationPicker")}>
           {destinations.map((destination) => (
             <div
               key={destination.name}
@@ -204,16 +204,16 @@ export const Pathways = () => {
       <div className="mt-6 flex flex-wrap gap-3">
         <Button
           href={`/eligibility?visaType=${encodeURIComponent(visaParam)}&destination=France&timeframe=3-6%20months`}
-          ariaLabel="Get my roadmap"
+          ariaLabel={t("cta.getRoadmap")}
         >
-          Get my roadmap
+          {t("cta.getRoadmap")}
         </Button>
         <Button
           variant="secondary"
           href={`/eligibility?visaType=${encodeURIComponent(visaParam)}`}
           ariaLabel="Check eligibility"
         >
-          Check eligibility
+          {t("cta.checkEligibility")}
         </Button>
       </div>
     </section>

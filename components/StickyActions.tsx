@@ -1,9 +1,11 @@
 "use client";
 
 import { MessageCircle, Sparkles } from "lucide-react";
-import Link from "next/link";
+import { LocaleLink } from "@/components/i18n/LocaleLink";
+import { useTranslations } from "@/components/i18n/LocaleProvider";
 
 export const StickyActions = () => {
+  const { t } = useTranslations();
   return (
     <>
       <a
@@ -14,17 +16,17 @@ export const StickyActions = () => {
         aria-label="Chat with VisaWay on WhatsApp"
       >
         <MessageCircle className="h-4 w-4" />
-        WhatsApp
+        {t("cta.whatsapp")}
       </a>
       <div className="fixed bottom-6 left-1/2 z-40 -translate-x-1/2 sm:hidden">
-        <Link
+        <LocaleLink
           href="/eligibility"
           className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white shadow-soft"
           aria-label="Check eligibility"
         >
           <Sparkles className="h-4 w-4" />
-          Check eligibility
-        </Link>
+          {t("cta.checkEligibility")}
+        </LocaleLink>
       </div>
     </>
   );

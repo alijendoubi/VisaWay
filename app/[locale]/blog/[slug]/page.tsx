@@ -1,9 +1,11 @@
 import { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { blogPosts, getPostBySlug } from "@/content/posts";
+import { locales, type Locale } from "@/lib/i18n";
 
-export const generateStaticParams = async () => blogPosts.map((post) => ({ slug: post.slug }));
+export const generateStaticParams = async () =>
+  locales.flatMap((locale) => blogPosts.map((post) => ({ slug: post.slug, locale })));
 
 export const generateMetadata = ({ params }: { params: { slug: string } }): Metadata => {
   const post = getPostBySlug(params.slug);
@@ -14,12 +16,12 @@ export const generateMetadata = ({ params }: { params: { slug: string } }): Meta
   };
 };
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
+export default function BlogPostPage({ params }: { params: { slug: string; locale: Locale } }) {
   const post = getPostBySlug(params.slug);
   if (!post) return notFound();
 
   const related = blogPosts.filter((item) => item.slug !== post.slug).slice(0, 3);
-  const shareUrl = `https://visaway.com/blog/${post.slug}`;
+  const shareUrl = `https://visaway.com/${params.locale}/blog/${post.slug}`;
 
   return (
     <div>
@@ -82,7 +84,11 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         <h3 className="text-xl font-semibold text-ink">Related posts</h3>
         <div className="mt-6 grid gap-6 md:grid-cols-3">
           {related.map((item) => (
-            <Link key={item.slug} href={`/blog/${item.slug}`} className="glass rounded-2xl p-5">
+            <Link
+              key={item.slug}
+              href={`/${params.locale}/blog/${item.slug}`}
+              className="glass rounded-2xl p-5"
+            >
               <p className="text-xs font-semibold uppercase text-sky">{item.tags.join(" · ")}</p>
               <p className="mt-2 text-sm font-semibold text-ink">{item.title}</p>
               <p className="mt-2 text-xs text-ink/60">{item.readingTime}</p>
