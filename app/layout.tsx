@@ -1,7 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Inter } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CookieBanner } from "@/components/CookieBanner";
@@ -9,8 +8,6 @@ import { ConsultationModal } from "@/components/ConsultationModal";
 import { ModalProvider } from "@/components/ModalContext";
 import { StickyActions } from "@/components/StickyActions";
 import { Analytics } from "@vercel/analytics/next";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://visaway.com"),
@@ -45,7 +42,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={inter.className}>
+    <html lang="en" className="font-sans">
       <body>
         <a href="#main" className="sr-only focus:not-sr-only focus-ring">
           Skip to content

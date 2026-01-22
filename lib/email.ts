@@ -1,14 +1,5 @@
 import sgMail from "@sendgrid/mail";
 
-const apiKey = process.env.SENDGRID_API_KEY;
-const fromEmail = process.env.SENDGRID_FROM_EMAIL;
-
-if (!apiKey || !fromEmail) {
-  throw new Error("Missing SENDGRID_API_KEY or SENDGRID_FROM_EMAIL");
-}
-
-sgMail.setApiKey(apiKey);
-
 export type EmailTemplate = "confirmation" | "reminder" | "followup";
 
 const templateMap: Record<EmailTemplate, string | undefined> = {
@@ -26,6 +17,12 @@ export const sendTemplateEmail = async ({
   template: EmailTemplate;
   data: Record<string, string>;
 }) => {
+  const apiKey = process.env.SENDGRID_API_KEY;
+  const fromEmail = process.env.SENDGRID_FROM_EMAIL;
+  if (!apiKey || !fromEmail) {
+    throw new Error("Missing SENDGRID_API_KEY or SENDGRID_FROM_EMAIL");
+  }
+  sgMail.setApiKey(apiKey);
   const templateId = templateMap[template];
   if (!templateId) {
     throw new Error(`Missing template ID for ${template}`);
